@@ -19,7 +19,7 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-    @RequestMapping(value="/login",method=RequestMethod.POST,consumes = "application/json",produces ="text/plain")
+    @RequestMapping(value="/login",method=RequestMethod.POST,consumes = "application/json")
     public ResponseEntity<Object> login(@RequestBody LoginDto loginDto) throws UnauthourizedException {
         LOGGER.info("validating user : "+loginDto.getEmpId());
         return ResponseEntity.status(200).body(loginService.login(loginDto));

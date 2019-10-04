@@ -3,6 +3,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 
 @Entity
@@ -40,16 +41,15 @@ public class LoginEntity {
         this.createdBy = createdBy;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
-    @Column(name = "timestamp")
-
-    private String timestamp;
+    @Column(name = "created_time")
+    private Date timestamp;
 
 }
