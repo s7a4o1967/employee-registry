@@ -5,10 +5,12 @@ public class LoginDto {
     private String password;
 
     public String getEmpId() {
+
         return empId;
     }
 
     public void setEmpId(String empId) {
+
         this.empId = empId;
     }
 
@@ -17,6 +19,7 @@ public class LoginDto {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 }

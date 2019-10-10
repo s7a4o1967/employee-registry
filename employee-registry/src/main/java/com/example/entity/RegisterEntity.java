@@ -13,6 +13,17 @@ public class RegisterEntity {
     @Column(name = "emp_id")
     private String empId;
 
+    @Column(name="password")
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Column(name = "first_name")
     private String firstName;
 

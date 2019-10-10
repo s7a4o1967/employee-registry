@@ -1,11 +1,10 @@
 package com.example.service;
 
 import com.example.dto.RegisterDto;
-import com.example.entity.RegisterEntity;
-import com.example.exception.UnauthourizedException;
+import com.example.exception.CustomException;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface RegisterService {
-    boolean register(RegisterEntity registerEntity);
+    boolean register(RegisterDto registerDto) throws CustomException;
 }
