@@ -1,43 +1,32 @@
 package com.example.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
-@Table(name="employee_details1")
-public class RegisterEntity {
+@Table(name="employee_details")
+public class EmployeesEntity {
+
     @Id
     @Column(name = "emp_id")
     private String empId;
-
-    @Column(name="password")
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Column(name = "first_name")
+    @Column(name="first_name")
     private String firstName;
-
-    @Column(name = "last_name")
+    @Column(name="last_name")
     private String lastName;
-
-    @Column(name = "email")
+    @Column
     private String email;
-
-    @Column(name = "gender")
+    @Column
     private String gender;
-
-    @Column(name = "age")
+    @Column
     private int age;
+    @Column(name="created_by")
+    private String createdBy;
+    @Column(name="created_time")
+    private String timeStamp;
 
     public String getEmpId() {
         return empId;
@@ -92,20 +81,17 @@ public class RegisterEntity {
     }
 
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        createdBy = createdBy;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public String getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
     }
-    @Column(name = "created_by")
-    private String createdBy;
-    @Column(name = "created_time")
-    private Date createdTime;
+
 
 
 }

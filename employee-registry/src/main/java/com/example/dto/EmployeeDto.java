@@ -1,41 +1,23 @@
 package com.example.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
 
-
-public class RegisterDto {
+public class EmployeeDto {
 
     private String empId;
 
-
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
     private String firstName;
-
 
     private String lastName;
 
-
     private String email;
-
 
     private String gender;
 
-
     private int age;
+
+    private String createdBy;
+
+    private String timeStamp;
 
     public String getEmpId() {
         return empId;
@@ -93,17 +75,11 @@ public class RegisterDto {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public String getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
     }
-
-    private String createdBy;
-
-    private Date createdTime;
-
-
 }

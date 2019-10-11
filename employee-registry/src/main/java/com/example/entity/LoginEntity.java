@@ -1,4 +1,5 @@
 package com.example.entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +8,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name="login_credentials1")
+@Table(name="login_credentials")
 public class LoginEntity {
     @Id
     @Column(name = "emp_id")

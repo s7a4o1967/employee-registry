@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginRepository extends JpaRepository<LoginEntity,String>{
     LoginEntity findByEmpIdAndPassword(String empId,String password);
-
-
 }
