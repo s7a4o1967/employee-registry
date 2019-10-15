@@ -1,5 +1,7 @@
 package com.example.service.impl;
 
+import java.util.List;
+import java.util.Optional;
 import com.example.dto.RegisterDto;
 import com.example.entity.LoginEntity;
 import com.example.entity.RegisterEntity;
@@ -17,7 +19,7 @@ public class RegisterServiceImpl implements RegisterService{
     @Autowired
     private RegisterRepository registerRepository;
     @Autowired
-    LoginRepository loginRepository;
+    private LoginRepository loginRepository;
     private RegisterEntity registerEntity;
     private ModelMapper modelMapper=new ModelMapper();
 
@@ -41,6 +43,41 @@ public class RegisterServiceImpl implements RegisterService{
         }
         return true;
     }
+
+    @Override
+    public boolean edit(RegisterEntity registerEntity) throws CustomException {
+        RegisterEntity registerEntity2=null;
+        registerEntity2=registerRepository.findByEmpId(registerEntity.getEmpId());
+        if(registerEntity2==null){
+            throw new CustomException("This ID does not exist",HttpStatus.BAD_REQUEST);
+        }
+        registerEntity2=registerEntity;
+
+        RegisterEntity registerEntity3=registerRepository.save(registerEntity2);
+        return true;
+
+
+    }
+    public Optional<RegisterEntity> getProfile(String empId) throws CustomException {
+
+        Optional<RegisterEntity> registerEntity= registerRepository.findById(empId);
+        if(!(registerEntity.isPresent())){
+            throw new CustomException("User Not Found",HttpStatus.BAD_REQUEST);
+        }
+        return registerEntity;
+    }
+
+
+
+    public List<RegisterEntity> getDetails(String createdBy) throws CustomException {
+        List<RegisterEntity> employeesEntity=registerRepository.findByCreatedBy(createdBy);
+        if(employeesEntity.size()==0){
+            throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);
+        }
+        return employeesEntity;
+    }
+
+
 
 
 }

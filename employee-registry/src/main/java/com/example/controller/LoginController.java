@@ -15,7 +15,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @RequestMapping(value="/login",method=RequestMethod.POST,consumes = "application/json")
-    @CrossOrigin(origins = "http://localhost:8888")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Object> login(@RequestBody LoginDto loginDto) throws CustomException {
         LOGGER.info("validating user : "+loginDto.getEmpId());
         return ResponseEntity.status(200).body(loginService.login(loginDto));
