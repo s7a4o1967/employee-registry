@@ -2,6 +2,9 @@ package com.example.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
+
+import com.example.controller.RegisterController;
 import com.example.dto.RegisterDto;
 import com.example.entity.LoginEntity;
 import com.example.entity.RegisterEntity;
@@ -16,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisterServiceImpl implements RegisterService{
+    private final static Logger LOGGER= Logger.getLogger(RegisterServiceImpl.class.getName());
+
     @Autowired
     private RegisterRepository registerRepository;
     @Autowired
@@ -75,6 +80,19 @@ public class RegisterServiceImpl implements RegisterService{
             throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);
         }
         return employeesEntity;
+    }
+
+    @Override
+    public List<RegisterEntity> getValues(String id) throws CustomException{
+        LOGGER.info("validating user : "+id);
+
+        return registerRepository.findByEmpIdLike(id);
+//        if(registerRepository.findByEmpIdLike(id).size()!=0){
+//            return registerRepository.findByEmpIdLike(id);
+//        }
+//        else{
+//            return null;
+//        }
     }
 
 

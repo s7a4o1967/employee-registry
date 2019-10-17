@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name="employee_details1")
+@Table(name="employee_details")
 public class RegisterEntity {
     @Id
     @Column(name = "emp_id")
@@ -95,17 +95,21 @@ public class RegisterEntity {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+
+    public String getModifiedTime() {
+        return modifiedTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setModifiedTime(String modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
+
     @Column(name = "created_by")
+
     private String createdBy;
-    @Column(name = "created_time")
-    private Date createdTime;
+
+    @Column(name="modified_time")
+    private String modifiedTime;
 
 
 }
