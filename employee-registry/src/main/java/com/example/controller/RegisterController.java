@@ -27,17 +27,17 @@ public class RegisterController {
         return ResponseEntity.status(200).body(registerService.edit(registerEntity));
     }
 
-    @RequestMapping("/details/{createdBy}")
+    @RequestMapping(value="/details/{createdBy}",method=RequestMethod.GET)
     public ResponseEntity<Object> details(@PathVariable String createdBy) throws CustomException{
         return ResponseEntity.status(200).body(registerService.getDetails(createdBy));
     }
 
-    @RequestMapping(value="/view/{empId}")
+    @RequestMapping(value="/view/{empId}",method=RequestMethod.GET)
     public ResponseEntity<Object> view(@PathVariable String empId) throws CustomException{
         return ResponseEntity.status(200).body(registerService.getProfile(empId));
     }
 
-    @RequestMapping(value="/search/{id}")
+    @RequestMapping(value="/search/{id}",method=RequestMethod.GET)
     public ResponseEntity<Object> search(@PathVariable String id) throws CustomException{
         LOGGER.info("validating user : "+id);
         return ResponseEntity.status(200).body(registerService.getValues(id));
