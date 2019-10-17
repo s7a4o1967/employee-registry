@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RegisterService {
     boolean register(RegisterDto registerDto) throws CustomException;
-    boolean edit(RegisterEntity registerEntity) throws CustomException;
+    boolean edit(RegisterDto registerEntity) throws CustomException;
 
     List<RegisterEntity> getValues(String id) throws CustomException;;
 

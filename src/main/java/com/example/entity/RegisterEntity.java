@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+//import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -96,11 +98,11 @@ public class RegisterEntity {
     }
 
 
-    public String getModifiedTime() {
+    public LocalDateTime getModifiedTime() {
         return modifiedTime;
     }
 
-    public void setModifiedTime(String modifiedTime) {
+    public void setModifiedTime(LocalDateTime modifiedTime) {
         this.modifiedTime = modifiedTime;
     }
 
@@ -109,7 +111,7 @@ public class RegisterEntity {
     private String createdBy;
 
     @Column(name="modified_time")
-    private String modifiedTime;
+    private LocalDateTime modifiedTime;
 
 
 }

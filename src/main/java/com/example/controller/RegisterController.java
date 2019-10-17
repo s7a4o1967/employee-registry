@@ -22,9 +22,9 @@ public class RegisterController {
         return ResponseEntity.status(200).body(registerService.register(registerDto));
     }
     @RequestMapping(value="/edit",method=RequestMethod.POST,consumes="application/json")
-    public ResponseEntity<Object> edit(@RequestBody RegisterEntity registerEntity) throws CustomException {
+    public ResponseEntity<Object> edit(@RequestBody RegisterDto registerDto) throws CustomException {
 
-        return ResponseEntity.status(200).body(registerService.edit(registerEntity));
+        return ResponseEntity.status(200).body(registerService.edit(registerDto));
     }
 
     @RequestMapping(value="/details/{createdBy}",method=RequestMethod.GET)

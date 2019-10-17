@@ -1,8 +1,12 @@
 package com.example.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+//import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import com.example.controller.RegisterController;
 import com.example.dto.RegisterDto;
@@ -16,6 +20,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class RegisterServiceImpl implements RegisterService{
@@ -42,21 +47,30 @@ public class RegisterServiceImpl implements RegisterService{
         else{
 
             registerEntity=modelMapper.map(registerDto,RegisterEntity.class);
-            registerentity = registerRepository.save(registerEntity);
             LoginEntity loginEntity1=modelMapper.map(registerDto,LoginEntity.class);
+            LocalDateTime localDateTime=LocalDateTime.now();
+            registerEntity.setModifiedTime(localDateTime);
+            loginEntity1.setCreatedTime(localDateTime);
+            registerentity = registerRepository.save(registerEntity);
             loginEntity2=loginRepository.save(loginEntity1);
         }
         return true;
     }
 
     @Override
-    public boolean edit(RegisterEntity registerEntity) throws CustomException {
+    public boolean edit(RegisterDto registerDto) throws CustomException {
+        LocalDateTime localDateTime=LocalDateTime.now();
         RegisterEntity registerEntity2=null;
-        registerEntity2=registerRepository.findByEmpId(registerEntity.getEmpId());
+        registerEntity2=registerRepository.findByEmpId(registerDto.getEmpId());
+
+
         if(registerEntity2==null){
             throw new CustomException("This ID does not exist",HttpStatus.BAD_REQUEST);
         }
+        registerEntity=modelMapper.map(registerDto,RegisterEntity.class);
+        registerEntity.setModifiedTime(localDateTime);
         registerEntity2=registerEntity;
+
 
         RegisterEntity registerEntity3=registerRepository.save(registerEntity2);
         return true;
