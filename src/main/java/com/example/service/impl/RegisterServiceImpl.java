@@ -108,6 +108,16 @@ public class RegisterServiceImpl implements RegisterService{
 //            return null;
 //        }
     }
+    @Override
+    public boolean deleteID(String empId) throws CustomException{
+        registerEntity=registerRepository.findByEmpId(empId);
+        if(registerEntity==null){
+            throw new CustomException("User not Found",HttpStatus.BAD_REQUEST);
+        }
+        return registerRepository.removeByEmpId(empId);
+
+
+    }
 
 
 

@@ -42,4 +42,8 @@ public class RegisterController {
         LOGGER.info("validating user : "+id);
         return ResponseEntity.status(200).body(registerService.getValues(id));
     }
+    @RequestMapping(value="/delete/{empId}",method=RequestMethod.DELETE)
+    public ResponseEntity<Object> delete(@PathVariable String empId) throws CustomException{
+        return ResponseEntity.status(200).body(registerService.deleteID(empId));
+    }
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public interface RegisterService {
     boolean register(RegisterDto registerDto) throws CustomException;
     boolean edit(RegisterDto registerEntity) throws CustomException;
-
+    boolean deleteID(String empId) throws CustomException;
     List<RegisterEntity> getValues(String id) throws CustomException;;
 
     Optional<RegisterEntity> getProfile(String empId) throws CustomException;
