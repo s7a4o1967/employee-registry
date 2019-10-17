@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 public class RegisterController {
+    private final static Logger LOGGER=Logger.getLogger(RegisterController.class.getName());
+
     @Autowired
     private RegisterService registerService;
 
@@ -31,5 +35,11 @@ public class RegisterController {
     @RequestMapping(value="/view/{empId}")
     public ResponseEntity<Object> view(@PathVariable String empId) throws CustomException{
         return ResponseEntity.status(200).body(registerService.getProfile(empId));
+    }
+
+    @RequestMapping(value="/{id}")
+    public ResponseEntity<Object> search(@PathVariable String id) throws CustomException{
+        LOGGER.info("validating user : "+id);
+        return ResponseEntity.status(200).body(registerService.getValues(id));
     }
 }
