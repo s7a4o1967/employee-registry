@@ -37,7 +37,7 @@ public class RegisterController {
         return ResponseEntity.status(200).body(registerService.getProfile(empId));
     }
 
-    @RequestMapping(value="/{id}")
+    @RequestMapping(value="/search/{id}")
     public ResponseEntity<Object> search(@PathVariable String id) throws CustomException{
         LOGGER.info("validating user : "+id);
         return ResponseEntity.status(200).body(registerService.getValues(id));
