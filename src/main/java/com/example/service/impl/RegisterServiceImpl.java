@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 
 @Service
 public class RegisterServiceImpl implements RegisterService{
@@ -101,21 +103,19 @@ public class RegisterServiceImpl implements RegisterService{
         LOGGER.info("validating user : "+id);
 
         return registerRepository.findByEmpIdLike(id);
-//        if(registerRepository.findByEmpIdLike(id).size()!=0){
-//            return registerRepository.findByEmpIdLike(id);
-//        }
-//        else{
-//            return null;
-//        }
+
     }
+    @Transactional
     @Override
     public boolean deleteID(String empId) throws CustomException{
         registerEntity=registerRepository.findByEmpId(empId);
         if(registerEntity==null){
             throw new CustomException("User not Found",HttpStatus.BAD_REQUEST);
         }
-        return registerRepository.removeByEmpId(empId);
-
+        if(registerRepository.removeByEmpId(empId)!=0){
+            return true;
+        }
+        return false;
 
     }
 

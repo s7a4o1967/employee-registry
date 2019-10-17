@@ -18,5 +18,5 @@ public interface RegisterRepository extends JpaRepository<RegisterEntity,String>
 
     @Query(value = "select e from RegisterEntity e where e.empId like %:id% OR e.firstName like %:id% OR e.lastName like %:id%")
     List<RegisterEntity> findByEmpIdLike(@Param("id") String id);
-    boolean removeByEmpId(String empId);
+    int removeByEmpId(String empId);
 }
