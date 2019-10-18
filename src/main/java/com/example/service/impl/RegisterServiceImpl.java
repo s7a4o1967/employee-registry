@@ -97,17 +97,11 @@ public class RegisterServiceImpl implements RegisterService{
 
 
 
-<<<<<<< HEAD
     public Page<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
         org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5, Sort.by("empId"));
         Page<RegisterEntity> employeesEntity= (Page<RegisterEntity>) registerRepository.findByCreatedBy(createdBy,pageable);
         if(employeesEntity==null){
-=======
-    public List<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5, Sort.by("empId"));
-        List<RegisterEntity> employeesEntity=registerRepository.findByCreatedBy(createdBy,pageable);
-        if(employeesEntity.size()==0){
->>>>>>> 1fcef2dd60cb8ae6a644a5d4fe40d45f583625df
+
             throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);
         }
         return employeesEntity;
