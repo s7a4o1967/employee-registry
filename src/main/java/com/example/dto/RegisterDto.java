@@ -12,16 +12,6 @@ public class RegisterDto {
     private String empId;
 
 
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
     private String firstName;
 

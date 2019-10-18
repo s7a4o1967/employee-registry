@@ -56,6 +56,8 @@ public class RegisterServiceImpl implements RegisterService{
             LocalDateTime localDateTime=LocalDateTime.now();
             registerEntity.setModifiedTime(localDateTime);
             loginEntity1.setCreatedTime(localDateTime);
+            registerEntity.setPassword("password");
+            loginEntity1.setPassword("password");
             registerentity = registerRepository.save(registerEntity);
             loginEntity2=loginRepository.save(loginEntity1);
         }
