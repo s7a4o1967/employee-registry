@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 
@@ -93,7 +94,7 @@ public class RegisterServiceImpl implements RegisterService{
 
 
     public List<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5);
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5, Sort.by("empId"));
         List<RegisterEntity> employeesEntity=registerRepository.findByCreatedBy(createdBy,pageable);
         if(employeesEntity.size()==0){
             throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);
