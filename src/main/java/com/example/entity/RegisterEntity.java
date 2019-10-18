@@ -107,7 +107,6 @@ public class RegisterEntity {
     }
 
     @Column(name = "created_by")
-
     private String createdBy;
 
     @Column(name="modified_time")

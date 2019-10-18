@@ -95,15 +95,6 @@ public class RegisterDto {
 
     private String createdBy;
 
-//    public Date getModifiedTime() {
-//        return modifiedTime;
-//    }
-//
-//    public void setModifiedTime(Date modifiedTime) {
-//        this.modifiedTime = modifiedTime;
-//    }
-//
-//    private Date modifiedTime;
 
 
 }

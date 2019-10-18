@@ -16,7 +16,7 @@ public interface RegisterService {
     List<RegisterEntity> getValues(String id) throws CustomException;;
 
     Optional<RegisterEntity> getProfile(String empId) throws CustomException;
-    List<RegisterEntity> getDetails(String createdBy) throws CustomException;
+    List<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException;
 //    List<RegisterEntity> getValues(String id) throws CustomException;
 
 }
