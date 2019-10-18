@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.example.dto.RegisterDto;
 import com.example.entity.RegisterEntity;
 import com.example.exception.CustomException;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +17,7 @@ public interface RegisterService {
     List<RegisterEntity> getValues(String id) throws CustomException;;
 
     Optional<RegisterEntity> getProfile(String empId) throws CustomException;
-    List<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException;
+    Page<RegisterEntity> getDetails(String createdBy, int pageNo) throws CustomException;
 //    List<RegisterEntity> getValues(String id) throws CustomException;
 
 }

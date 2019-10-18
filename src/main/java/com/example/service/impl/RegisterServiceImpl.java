@@ -19,7 +19,9 @@ import com.example.repository.LoginRepository;
 import com.example.service.RegisterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -92,10 +94,10 @@ public class RegisterServiceImpl implements RegisterService{
 
 
 
-    public List<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5);
-        List<RegisterEntity> employeesEntity=registerRepository.findByCreatedBy(createdBy,pageable);
-        if(employeesEntity.size()==0){
+    public Page<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5, Sort.by("empId"));
+        Page<RegisterEntity> employeesEntity= (Page<RegisterEntity>) registerRepository.findByCreatedBy(createdBy,pageable);
+        if(employeesEntity==null){
             throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);
         }
         return employeesEntity;

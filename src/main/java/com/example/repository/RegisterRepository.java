@@ -3,6 +3,7 @@ package com.example.repository;
 import java.util.List;
 import com.example.entity.RegisterEntity;
 import com.example.exception.CustomException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
 public interface RegisterRepository extends JpaRepository<RegisterEntity,String> {
 
     RegisterEntity findByEmpId(String empId);
-    List<RegisterEntity> findByCreatedBy(String createdBy,Pageable pageable);
+    Page<RegisterEntity> findByCreatedBy(String createdBy, Pageable pageable);
 
     @Query(value = "select e from RegisterEntity e where e.empId like %:id% OR e.firstName like %:id% OR e.lastName like %:id%")
     List<RegisterEntity> findByEmpIdLike(@Param("id") String id);
