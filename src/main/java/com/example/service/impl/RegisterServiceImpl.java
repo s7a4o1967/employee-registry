@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.example.controller.RegisterController;
+import com.example.dto.PageDto;
 import com.example.dto.RegisterDto;
 import com.example.entity.LoginEntity;
 import com.example.entity.RegisterEntity;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
@@ -97,9 +99,9 @@ public class RegisterServiceImpl implements RegisterService{
 
 
 
-    public Page<RegisterEntity> getDetails(String createdBy,int pageNo) throws CustomException {
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageNo,5, Sort.by("empId"));
-        Page<RegisterEntity> employeesEntity= (Page<RegisterEntity>) registerRepository.findByCreatedBy(createdBy,pageable);
+    public Page<RegisterEntity> getDetails(PageDto pageDto) throws CustomException {
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(pageDto.getPageNo(),pageDto.getPageSize(), Sort.by("empId"));
+        Page<RegisterEntity> employeesEntity= (Page<RegisterEntity>) registerRepository.findByCreatedBy(pageDto.getCreatedBy(),pageable);
         if(employeesEntity==null){
 
             throw new CustomException("Users Not Found",HttpStatus.NO_CONTENT);

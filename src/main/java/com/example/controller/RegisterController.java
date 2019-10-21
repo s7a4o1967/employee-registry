@@ -1,4 +1,5 @@
 package com.example.controller;
+import com.example.dto.PageDto;
 import com.example.dto.RegisterDto;
 import com.example.entity.RegisterEntity;
 import com.example.service.RegisterService;
@@ -27,9 +28,9 @@ public class RegisterController {
         return ResponseEntity.status(200).body(registerService.edit(registerDto));
     }
 
-    @RequestMapping(value="/details/{createdBy}/{pageNo}",method=RequestMethod.GET)
-    public ResponseEntity<Object> details(@PathVariable String createdBy,@PathVariable int pageNo) throws CustomException{
-        return ResponseEntity.status(200).body(registerService.getDetails(createdBy,pageNo));
+    @RequestMapping(value="/details",method=RequestMethod.POST,consumes = "application/json")
+    public ResponseEntity<Object> details(@RequestBody PageDto pageDto) throws CustomException{
+        return ResponseEntity.status(200).body(registerService.getDetails(pageDto));
     }
 
     @RequestMapping(value="/view/{empId}",method=RequestMethod.GET)
