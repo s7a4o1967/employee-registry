@@ -15,7 +15,4 @@ public class EmployeeRegistryExceptionHandler {
     ResponseEntity<Object> handleUnauthorizedException(CustomException unauthorizedException){
         return ResponseEntity.status(unauthorizedException.getStatus()).body(unauthorizedException.getMessage());
     }
-
-
-
 }

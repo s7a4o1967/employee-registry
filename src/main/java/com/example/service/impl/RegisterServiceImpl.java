@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.example.controller.RegisterController;
+import com.example.dto.CredentialsDto;
 import com.example.dto.PageDto;
 import com.example.dto.RegisterDto;
 import com.example.entity.LoginEntity;
@@ -40,6 +41,7 @@ public class RegisterServiceImpl implements RegisterService{
     @Autowired
     private LoginRepository loginRepository;
     private RegisterEntity registerEntity;
+    private CredentialsDto credentialsDto;
     private ModelMapper modelMapper=new ModelMapper();
 
     @Override
