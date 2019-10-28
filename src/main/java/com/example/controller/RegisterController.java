@@ -37,7 +37,7 @@ public class RegisterController {
             CredentialsDto credentialsDto = new CredentialsDto();
             credentialsDto.setEmail(registerDto.getEmail());
             credentialsDto.setEmpId(registerDto.getEmpId());
-            credentialsDto.setEmpId(registerDto.getFirstName());
+            credentialsDto.setFirstName(registerDto.getFirstName());
             credentialsDto.setPassword("password");
             com.squareup.okhttp.RequestBody requestBody = com.squareup.okhttp.RequestBody.create(MediaType.parse(org.springframework.http.MediaType.APPLICATION_JSON_VALUE), objectMapper.writeValueAsString(credentialsDto));
             Request request = new Request.Builder()
