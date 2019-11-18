@@ -35,7 +35,6 @@ import javax.transaction.Transactional;
 @Service
 public class RegisterServiceImpl implements RegisterService{
     private final static Logger LOGGER= Logger.getLogger(RegisterServiceImpl.class.getName());
-
     @Autowired
     private RegisterRepository registerRepository;
     @Autowired
@@ -43,7 +42,6 @@ public class RegisterServiceImpl implements RegisterService{
     private RegisterEntity registerEntity;
     private CredentialsDto credentialsDto;
     private ModelMapper modelMapper=new ModelMapper();
-
     @Override
     public boolean register(RegisterDto registerDto) throws CustomException {
         RegisterEntity registerEntity=null;
@@ -51,12 +49,9 @@ public class RegisterServiceImpl implements RegisterService{
         LoginEntity loginEntity2=null;
         RegisterEntity registerEntity1=registerRepository.findByEmpId(registerDto.getEmpId());
         if(registerEntity1!=null){
-
-
             throw new CustomException("User already exists",HttpStatus.CONFLICT);
         }
         else{
-
             registerEntity=modelMapper.map(registerDto,RegisterEntity.class);
             LoginEntity loginEntity1=modelMapper.map(registerDto,LoginEntity.class);
             LocalDateTime localDateTime=LocalDateTime.now();
@@ -69,38 +64,27 @@ public class RegisterServiceImpl implements RegisterService{
         }
         return true;
     }
-
     @Override
     public boolean edit(RegisterDto registerDto) throws CustomException {
         LocalDateTime localDateTime=LocalDateTime.now();
         RegisterEntity registerEntity2=null;
         registerEntity2=registerRepository.findByEmpId(registerDto.getEmpId());
-
-
         if(registerEntity2==null){
             throw new CustomException("This ID does not exist",HttpStatus.BAD_REQUEST);
         }
         registerEntity=modelMapper.map(registerDto,RegisterEntity.class);
         registerEntity.setModifiedTime(localDateTime);
         registerEntity2=registerEntity;
-
-
         RegisterEntity registerEntity3=registerRepository.save(registerEntity2);
         return true;
-
-
     }
     public Optional<RegisterEntity> getProfile(String empId) throws CustomException {
-
         Optional<RegisterEntity> registerEntity= registerRepository.findById(empId);
         if(!(registerEntity.isPresent())){
             throw new CustomException("User Not Found",HttpStatus.BAD_REQUEST);
         }
         return registerEntity;
     }
-
-
-
     public Page<RegisterEntity> getDetails(PageDto pageDto) throws CustomException {
         org.springframework.data.domain.Pageable pageable= PageRequest.of(pageDto.getPageNo(),pageDto.getPageSize(), Sort.by("empId"));
         Page<RegisterEntity> employeesEntity= (Page<RegisterEntity>) registerRepository.findByCreatedBy(pageDto.getCreatedBy(),pageable);
@@ -131,8 +115,4 @@ public class RegisterServiceImpl implements RegisterService{
         return false;
 
     }
-
-
-
-
 }

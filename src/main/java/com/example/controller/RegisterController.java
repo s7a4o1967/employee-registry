@@ -31,7 +31,6 @@ public class RegisterController {
    // @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Object> register(@RequestBody RegisterDto registerDto) throws CustomException, IOException {
         if (registerService.register(registerDto)) {
-            String baseUrl = "http://email-service:8001/email";
             OkHttpClient client = new OkHttpClient();
             CredentialsDto credentialsDto = new CredentialsDto();
             credentialsDto.setEmail(registerDto.getEmail());
@@ -40,7 +39,7 @@ public class RegisterController {
             credentialsDto.setPassword("password");
             com.squareup.okhttp.RequestBody requestBody = com.squareup.okhttp.RequestBody.create(MediaType.parse(org.springframework.http.MediaType.APPLICATION_JSON_VALUE), objectMapper.writeValueAsString(credentialsDto));
             Request request = new Request.Builder()
-                    .url("http://email-service:8001/email")
+                    .url("http://localhost:8001/email")
                     .post(requestBody)
                     .build();
             Response response = client.newCall(request).execute();
