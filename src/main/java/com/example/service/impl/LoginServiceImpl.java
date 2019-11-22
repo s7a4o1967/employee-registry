@@ -23,4 +23,9 @@ public class LoginServiceImpl implements LoginService{
 
         return true;
     }
+    @Override
+    public LoginEntity findByEmpId(String empId){
+        LoginEntity loginEntity=loginrepository.findByEmpId(empId);
+        return loginEntity;
+    }
 }
