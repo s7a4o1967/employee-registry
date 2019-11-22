@@ -15,20 +15,6 @@ public class LoginController {
     private final static Logger LOGGER=Logger.getLogger(LoginController.class.getName());
     @Autowired
     private LoginService loginService;
-    @Autowired
-    JwtTokenUtil jwtTokenUtil;
-    @RequestMapping(value= "/authenticate",method = RequestMethod.POST,consumes = "application/json")
-    public String authenticate(@RequestBody LoginDto loginDto) throws Exception{
-        final LoginEntity loginDetails = loginService
-                .findByEmpId(loginDto.getEmpId());
-        if(loginDetails==null){
-            return "No User Found";
-        }
-        else {
-            final String token = jwtTokenUtil.generateToken(loginDetails);
-            return token;
-        }
-    }
     @RequestMapping(value="/login",method=RequestMethod.POST,consumes = "application/json")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Object> login(@RequestBody LoginDto loginDto) throws CustomException {

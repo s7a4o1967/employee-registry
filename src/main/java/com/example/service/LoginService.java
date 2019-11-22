@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface LoginService  {
-    boolean login(LoginDto loginDto) throws CustomException;
+    String login(LoginDto loginDto) throws CustomException;
 
     LoginEntity findByEmpId(String empId);
 }
